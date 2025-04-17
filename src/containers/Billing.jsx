@@ -14,10 +14,15 @@ const Billing = () => (
 
     <div className={layout.sectionInfo}>
       <h2 className={styles.heading2}>
-        Easily control your <br className="sm:block hidden" /> billing & invoicing
+      Benefits of becoming a <br className="sm:block hidden" /> CoCloudMiners Alliance Partner
       </h2>
       <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        Elit enim sed massa etiam. Mauris eu adipiscing ultrices ametodio aenean neque. Fusce ipsum orci rhoncus aliporttitor integer platea placerat.
+      Become a partner of the GoCloudMining Alliance, share the invitation link with friends, 
+      and earn commission rewards permanently. While operating your own cloud mining contract, 
+      you can also get three levels of commission rewards from the platform! The first level rewards 3% 
+      commission, the second level rewards 1.5% commission, and the third level rewards 0.5% commission! 
+      Start making money at zero cost, and through the referral reward system, you can easily earn more than 
+      10,000 US dollars a month.
       </p>
 
       <div className="flex flex-row flex-wrap sm:mt-10 mt-6">

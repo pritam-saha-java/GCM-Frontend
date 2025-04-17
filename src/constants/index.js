@@ -17,29 +17,33 @@ export const navLinks = [
     id: "clients",
     title: "Clients",
   },
+  {
+    id: "/Dashboard",
+    title: "Dashboard",
+  },
 ];
 
 export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Rewards",
+    title: "Register now",
     content:
-      "The best credit cards offer some tantalizing combinations of promotions and prizes",
+      "Registration takes just a few minutes.",
   },
   {
     id: "feature-2",
     icon: shield,
-    title: "100% Secured",
+    title: "Get trial mining",
     content:
-      "We take proactive steps make sure your information and transactions are secure.",
+      "Find out how cloud mining works without any investment.",
   },
   {
     id: "feature-3",
     icon: send,
-    title: "Balance Transfer",
+    title: "Create and purchase your contract.",
     content:
-      "A balance transfer credit card can save you a lot of money in interest charges.",
+      "Start mining BTC today!",
   },
 ];
 
@@ -47,7 +51,7 @@ export const feedback = [
   {
     id: "feedback-1",
     content:
-      "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.",
+      "I've tried various mining websites,but this one is exceptional.Strong mining power,minimal downtime,transparent operations,and fair fees have significantly boosted my crypto holdings.",
     name: "Herman Jensen",
     title: "Founder & Leader",
     img: people01,
@@ -55,7 +59,7 @@ export const feedback = [
   {
     id: "feedback-2",
     content:
-      "Money makes your life easier. If you're lucky to have it, you're lucky.",
+      "This mining website has a visually appealing interface with clear and understandable images and charts.My mining experience here has been smooth,allowing me to focus on my photography work while earning some additional income.",
     name: "Steve Mark",
     title: "Founder & Leader",
     img: people02,
@@ -63,7 +67,7 @@ export const feedback = [
   {
     id: "feedback-3",
     content:
-      "It is usually people in the money business, finance, and international trade that are really rich.",
+      "If you need a dependable mining website,this one surpasses expectations.I've used it for months,and its consistent payouts and stable mining rigs make it a top choice for crypto mining.",
     name: "Kenn Gallagher",
     title: "Founder & Leader",
     img: people03,
@@ -94,23 +98,23 @@ export const footerLinks = [
     links: [
       {
         name: "Content",
-        link: "https://www.hoobank.com/content/",
+        link: "https://gocloudmining.com/content/",
       },
       {
         name: "How it Works",
-        link: "https://www.hoobank.com/how-it-works/",
+        link: "https://gocloudmining.com/how-it-works/",
       },
       {
         name: "Create",
-        link: "https://www.hoobank.com/create/",
+        link: "https://gocloudmining.com/create/",
       },
       {
         name: "Explore",
-        link: "https://www.hoobank.com/explore/",
+        link: "https://gocloudmining.com/explore/",
       },
       {
         name: "Terms & Services",
-        link: "https://www.hoobank.com/terms-and-services/",
+        link: "https://gocloudmining.com/terms-and-services/",
       },
     ],
   },
@@ -119,23 +123,23 @@ export const footerLinks = [
     links: [
       {
         name: "Help Center",
-        link: "https://www.hoobank.com/help-center/",
+        link: "https://gocloudmining.com/help-center/",
       },
       {
         name: "Partners",
-        link: "https://www.hoobank.com/partners/",
+        link: "https://gocloudmining.com/partners/",
       },
       {
         name: "Suggestions",
-        link: "https://www.hoobank.com/suggestions/",
+        link: "https://gocloudmining.com/suggestions/",
       },
       {
         name: "Blog",
-        link: "https://www.hoobank.com/blog/",
+        link: "https://gocloudmining.com/blog/",
       },
       {
         name: "Newsletters",
-        link: "https://www.hoobank.com/newsletters/",
+        link: "https://gocloudmining.com/newsletters/",
       },
     ],
   },
@@ -144,11 +148,11 @@ export const footerLinks = [
     links: [
       {
         name: "Our Partner",
-        link: "https://www.hoobank.com/our-partner/",
+        link: "https://gocloudmining.com/our-partner/",
       },
       {
         name: "Become a Partner",
-        link: "https://www.hoobank.com/become-a-partner/",
+        link: "https://gocloudmining.com/become-a-partner/",
       },
     ],
   },

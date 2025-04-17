@@ -15,8 +15,8 @@ const Navbar = () => {
       navbar'
     >
       <div className='
-        w-[124px] 
-        h-[32px]
+        w-[260px] 
+        h-[35px]
       '>
         <img src={logo} alt="logo" />
       </div>
