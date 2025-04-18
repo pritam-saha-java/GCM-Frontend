@@ -1,0 +1,12 @@
+.input-style {
+  @apply w-full bg-[#1c1c2f] text-sm text-white px-4 py-2.5 rounded-lg border border-[#2c2c40] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition;
+}
+.input-wrap {
+  @apply flex items-center relative;
+}
+.input-icon {
+  @apply absolute left-3 top-3 text-cyan-400;
+}
+.input-style {
+  @apply pl-10; /* make room for the icon */
+}
