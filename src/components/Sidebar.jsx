@@ -2,16 +2,19 @@ import { useState } from "react";
 import { Menu, X, LayoutDashboard, Wallet, ArrowDown, Package, Repeat, Users, MessageSquare, Settings, LogOut } from "lucide-react";
 import Dashboard from "./pages/Dashboard";
 import Deposit from "./pages/Deposit";
-import Withdraw from "./pages/Deposit";
+import Withdraw from "./pages/Withdraw";
+import Transaction from "./pages/Transaction";
+import Affiliate from "./pages/Affiliate";
+import Message from "./pages/Message";
 
 const navItems = [
   { name: "Dashboard", icon: <LayoutDashboard size={18} />, component: <Dashboard /> },
   { name: "Deposit", icon: <Wallet size={18} />, component: <Deposit /> },
   { name: "Withdraw", icon: <ArrowDown size={18} />, component: <Withdraw /> },
   { name: "Packages", icon: <Package size={18} />, component: <div>📦 Packages Page</div> },
-  { name: "Transactions", icon: <Repeat size={18} />, component: <div>🔁 Transactions Page</div> },
-  { name: "Affiliate", icon: <Users size={18} />, component: <div>👥 Affiliate Page</div> },
-  { name: "Message", icon: <MessageSquare size={18} />, component: <div>💬 Messages Page</div> },
+  { name: "Transactions", icon: <Repeat size={18} />, component: <Transaction /> },
+  { name: "Affiliate", icon: <Users size={18} />, component: <Affiliate /> },
+  { name: "Message", icon: <MessageSquare size={18} />, component: <Message /> },
   { name: "Settings", icon: <Settings size={18} />, component: <div>⚙️ Settings Page</div> },
   { name: "Logout", icon: <LogOut size={18} />, component: <div>👋 Logged Out</div> },
 ];
@@ -41,9 +44,9 @@ export default function Sidebar() {
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0`}
       >
         <div className="p-6 text-2xl font-bold tracking-wide text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text">
-          CryptoDash 🚀
+          GoCloudMining 🚀
         </div>
-        <nav className="flex flex-col px-4 space-y-3 mt-4">
+        <nav className="flex flex-col px-4 space-y-3 mt-2">
           {navItems.map((item, index) => (
             <button
               key={item.name}

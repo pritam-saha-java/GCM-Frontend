@@ -2,8 +2,13 @@ import React from 'react';
 import styles from './style';
 import { Hero, Navbar } from './components';
 import { Stats, Business, Billing, CardDeal, Testimonials, Clients, CTA, Footer } from './containers';
+import { Toaster } from "react-hot-toast";
+import Affiliate from './components/pages/Affiliate';
 
 const App = () => (
+  <>
+      <Toaster position="top-right" />
+      <Affiliate />
   <div className='bg-primary w-full overflow-hidden'>
     <div className={`${styles.paddingX} ${styles.flexCenter}`}>
       <div className={`${styles.boxWidth}`}>
@@ -31,6 +36,7 @@ const App = () => (
     </div>
   
   </div>
+  </>
 )
 
 export default App
