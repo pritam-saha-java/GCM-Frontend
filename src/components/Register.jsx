@@ -11,12 +11,17 @@ import {
   KeyRound,
   Share2,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import Navbar from "./Navbar";
 import Footer from "../containers/Footer"
 import styles from '../style';
+import { registerUser } from "../api/authentication";
+import { toast } from "react-hot-toast";
+
 
 export default function RegisterForm({ referralCodeFromURL = "" }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -43,10 +48,44 @@ export default function RegisterForm({ referralCodeFromURL = "" }) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted", form);
-  };
+  
+    // Password validations
+    if (form.password !== form.confirmPassword) {
+      toast.error("Login passwords do not match!");
+      return;
+    }
+    if (form.paymentPassword !== form.confirmPaymentPassword) {
+      toast.error("Payment passwords do not match!");
+      return;
+    }
+  
+    const loadingToast = toast.loading("Creating your account...");
+  
+    const result = await registerUser(form);
+    toast.dismiss(loadingToast);
+  
+    if (result.success) {
+      toast.success(result.message);
+      setForm({
+        username: "",
+        email: "",
+        phone: "",
+        countryCode: "+1",
+        password: "",
+        confirmPassword: "",
+        paymentPassword: "",
+        confirmPaymentPassword: "",
+        referralCode: "",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+    } else {
+      toast.error(result.message);
+    }
+  };  
 
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -155,7 +194,6 @@ export default function RegisterForm({ referralCodeFromURL = "" }) {
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="Phone Number"
-                required
                 className={inputClass}
               />
             </div>
