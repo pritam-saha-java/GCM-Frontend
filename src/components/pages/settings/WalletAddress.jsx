@@ -46,37 +46,6 @@ export default function WalletAddressPage() {
       {/* Header */}
       <header className="bg-gray-800 p-4 flex justify-between items-center shadow-sm">
         <h1 className="text-2xl font-bold text-white">Wallet Address</h1>
-        <div className="relative">
-          <button 
-            className="p-2 text-white hover:bg-gray-700 rounded-full"
-            onClick={toggleUserDropdown}
-          >
-            <User size={24} />
-          </button>
-          
-          {isUserDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-              <div className="py-1">
-                {menuItems.map((item) => (
-                  <a 
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className={`
-                      flex items-center px-4 py-3 transition-colors duration-150
-                      ${item.special ? 'bg-cyan-500 text-white hover:bg-cyan-600' : 'text-gray-800 hover:bg-black hover:text-white border-b'}
-                      ${hoveredItem === item.id ? (item.special ? 'bg-cyan-600 text-white' : 'bg-black text-white') : ''}
-                    `}
-                    onMouseEnter={() => setHoveredItem(item.id)}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <span className="mr-2">{item.icon}</span>
-                    <span>{item.label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
       </header>
 
       {/* Main Content */}
