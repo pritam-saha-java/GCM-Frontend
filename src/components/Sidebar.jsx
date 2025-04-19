@@ -3,6 +3,8 @@ import {
   Menu, X, LayoutDashboard, Wallet, ArrowDown, Package, Repeat,
   Users, MessageSquare, Settings, LogOut, ChevronDown, ChevronUp
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Deposit from "./pages/Deposit";
@@ -25,6 +27,7 @@ const navItems = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState(<Dashboard />);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -34,6 +37,21 @@ export default function Sidebar() {
     setActiveComponent(component);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
+    const loginTime = localStorage.getItem("loginTime");
+    if (loginTime && Date.now() - loginTime > 24 * 60 * 60 * 1000) {
+      localStorage.clear();
+      navigate("/");
+    }
+  }, []);  
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-[#0f0f1c] to-[#111122] text-white">

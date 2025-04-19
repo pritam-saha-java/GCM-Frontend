@@ -1,23 +1,66 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { close, logo, menu } from "../assets";
-import { navLinks } from "../constants";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [toggle, setToggle] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    setIsLoggedIn(!!user);
+  }, [location.pathname]);
 
   const handleNavClick = (id) => {
+    if (id === "Dashboard") return navigate("/dashboard");
+    if (id === "Login") return navigate("/login");
+    if (id === "Register") return navigate("/register");
+
     if (location.pathname === "/") {
-      const section = document.getElementById(id);
+      const section = document.getElementById(id.toLowerCase());
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      navigate(`/#${id}`);
+      navigate(`/#${id.toLowerCase()}`);
     }
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    toast.success("Logged out successfully!");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
+  const navLinks = [
+    { id: "home", title: "Home" },
+    { id: "features", title: "Features" },
+    { id: "clients", title: "Clients" },
+    isLoggedIn
+      ? { id: "Dashboard", title: "Dashboard" }
+      : { id: "Login", title: "Login" },
+    { id: "Register", title: "Register" },
+  ];
+  useEffect(() => {
+    const stored = localStorage.getItem("user");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.expiresAt && Date.now() > parsed.expiresAt) {
+        localStorage.removeItem("user");
+        toast("Session expired. Please log in again.", { icon: "⏰" });
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [location.pathname]);
+  
 
   return (
     <nav className="w-full flex py-6 justify-between items-center navbar">
@@ -31,14 +74,21 @@ const Navbar = () => {
           <li
             key={nav.id}
             onClick={() => handleNavClick(nav.id)}
-            className={`
-              font-poppins font-normal cursor-pointer text-[16px] text-white 
-              ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}
-            `}
+            className={`font-poppins font-normal cursor-pointer text-[16px] text-white ${
+              index === navLinks.length - 1 ? "mr-6" : "mr-10"
+            }`}
           >
             {nav.title}
           </li>
         ))}
+        {isLoggedIn && (
+          <li
+            onClick={handleLogout}
+            className="font-poppins font-normal cursor-pointer text-[16px] text-red-400 hover:text-red-300 transition"
+          >
+            Logout
+          </li>
+        )}
       </ul>
 
       {/* Mobile Menu */}
@@ -51,11 +101,9 @@ const Navbar = () => {
         />
 
         <div
-          className={`
-            ${toggle ? "flex" : "hidden"}
-            p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 
-            min-w-[140px] rounded-xl sidebar z-50
-          `}
+          className={`${
+            toggle ? "flex" : "hidden"
+          } p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-50`}
         >
           <ul className="list-none flex flex-col justify-end items-center flex-1">
             {navLinks.map((nav, index) => (
@@ -63,16 +111,25 @@ const Navbar = () => {
                 key={nav.id}
                 onClick={() => {
                   handleNavClick(nav.id);
-                  setToggle(false); // Close menu on click
+                  setToggle(false);
                 }}
-                className={`
-                  font-poppins font-normal cursor-pointer text-[16px] text-white 
-                  ${index === navLinks.length - 1 ? "mr-0" : "mb-4"}
-                `}
+                className={`font-poppins font-normal cursor-pointer text-[16px] text-white ${
+                  index === navLinks.length - 1 ? "mr-0" : "mb-4"
+                }`}
               >
                 {nav.title}
               </li>
             ))}
+            {isLoggedIn && (
+              <li
+                onClick={() => {
+                  handleLogout();
+                  setToggle(false);
+                }}
+              >
+                Logout
+              </li>
+            )}
           </ul>
         </div>
       </div>

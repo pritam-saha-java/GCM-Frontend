@@ -51,8 +51,10 @@ export default function LoginForm() {
         loginTime: Date.now(),
       };
   
-      localStorage.setItem("user", JSON.stringify(userData));
-  
+      const expirationTime = Date.now() + 24 * 60 * 60 * 1000;
+      localStorage.setItem("user", JSON.stringify({ ...userData, expiresAt: expirationTime }));
+      localStorage.setItem("loginTime", Date.now());
+
       // Auto logout after 24 hours
       setTimeout(() => {
         localStorage.removeItem("user");
