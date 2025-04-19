@@ -15,12 +15,14 @@ import Message from "./pages/Message";
 import WalletAddress from "./pages/settings/WalletAddress";
 import LoginPassword from "./pages/settings/LoginPassword";
 import PaymentPassword from "./pages/settings/PaymentPassword";
+import MiningPackages from "./pages/packages/MiningPackages";
+import MyPackages from "./pages/packages/MyPackages";
 
 const navItems = [
   { name: "Dashboard", icon: <LayoutDashboard size={18} />, component: <Dashboard /> },
   { name: "Deposit", icon: <Wallet size={18} />, component: <Deposit /> },
   { name: "Withdraw", icon: <ArrowDown size={18} />, component: <Withdraw /> },
-  { name: "Packages", icon: <Package size={18} />, component: <div>📦 Packages Page</div> },
+  // Packages moved to its own section with submenu
   { name: "Transactions", icon: <Repeat size={18} />, component: <Transaction /> },
   { name: "Affiliate", icon: <Users size={18} />, component: <Affiliate /> },
   { name: "Message", icon: <MessageSquare size={18} />, component: <Message /> },
@@ -31,6 +33,7 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeComponent, setActiveComponent] = useState(<Dashboard />);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isPackagesOpen, setIsPackagesOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const handleNavClick = (component) => {
@@ -74,13 +77,11 @@ export default function Sidebar() {
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0`}
       >
         <Link
-  to="/"
-  className="block p-6 text-2xl font-bold tracking-wide text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text transition hover:opacity-80"
->
-  GoCloudMining 🚀
-</Link>
-
-
+          to="/"
+          className="block p-6 text-2xl font-bold tracking-wide text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text transition hover:opacity-80"
+        >
+          GoCloudMining 🚀
+        </Link>
 
         <nav className="flex flex-col px-4 space-y-3 mt-2">
           {navItems.map((item) => (
@@ -99,6 +100,36 @@ export default function Sidebar() {
             </button>
           ))}
 
+          {/* Packages Dropdown */}
+          <div className="space-y-1">
+            <button
+              className={`flex items-center gap-3 w-full p-[19px] rounded-lg transition-all duration-200 font-medium text-sm
+              ${isPackagesOpen ? "bg-gradient-to-r from-cyan-500 to-blue-700 shadow-md" : "hover:bg-[#1e1e36] text-gray-300 hover:text-white"}`}
+              onClick={() => setIsPackagesOpen(!isPackagesOpen)}
+            >
+              <span className="text-cyan-400"><Package size={18} /></span>
+              Packages
+              {isPackagesOpen ? <ChevronUp className="ml-auto" size={18} /> : <ChevronDown className="ml-auto" size={18} />}
+            </button>
+
+            {isPackagesOpen && (
+              <div className="mt-2 space-y-1 pl-4 pr-2 transition-all duration-300">
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
+                  onClick={() => handleNavClick(<MiningPackages />)}
+                >
+                  <span className="text-cyan-400">▸</span> Mining Packages
+                </button>
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
+                  onClick={() => handleNavClick(<MyPackages />)}
+                >
+                  <span className="text-cyan-400">▸</span> My Packages
+                </button>
+              </div>
+            )}
+          </div>
+
           {/* Settings Dropdown */}
           <div className="space-y-1">
             <button
@@ -112,28 +143,27 @@ export default function Sidebar() {
             </button>
 
             {isSettingsOpen && (
-  <div className="mt-2 space-y-1 pl-4 pr-2 transition-all duration-300">
-    <button
-      className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
-      onClick={() => handleNavClick(<WalletAddress />)}
-    >
-      <span className="text-cyan-400">▸</span> Wallet Address
-    </button>
-    <button
-      className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
-      onClick={() => handleNavClick(<LoginPassword />)}
-    >
-      <span className="text-cyan-400">▸</span> Login Password
-    </button>
-    <button
-      className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
-      onClick={() => handleNavClick(<PaymentPassword />)}
-    >
-      <span className="text-cyan-400">▸</span> Payment Password
-    </button>
-  </div>
-)}
-
+              <div className="mt-2 space-y-1 pl-4 pr-2 transition-all duration-300">
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
+                  onClick={() => handleNavClick(<WalletAddress />)}
+                >
+                  <span className="text-cyan-400">▸</span> Wallet Address
+                </button>
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
+                  onClick={() => handleNavClick(<LoginPassword />)}
+                >
+                  <span className="text-cyan-400">▸</span> Login Password
+                </button>
+                <button
+                  className="w-full flex items-center gap-2 px-4 py-2 rounded-md text-sm text-gray-300 hover:bg-[#1e1e36] hover:text-white transition"
+                  onClick={() => handleNavClick(<PaymentPassword />)}
+                >
+                  <span className="text-cyan-400">▸</span> Payment Password
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Logout */}
