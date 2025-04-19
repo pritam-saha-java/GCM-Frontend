@@ -5,8 +5,13 @@ import { User, Lock, Eye, EyeOff } from "lucide-react";
 import Navbar from "./Navbar";
 import Footer from "../containers/Footer";
 import styles from "../style";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { loginUser } from "../api/authentication";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -23,10 +28,50 @@ export default function LoginForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login form submitted:", form);
+  
+    const loadingToast = toast.loading("Logging you in...");
+  
+    const result = await loginUser(form);
+    toast.dismiss(loadingToast);
+  
+    if (result.success) {
+      toast.success(result.message);
+  
+      const { id, username, email, roles, tokenType, accessToken } = result.user;
+  
+      const userData = {
+        id,
+        username,
+        email,
+        roles,
+        tokenType,
+        accessToken,
+        loginTime: Date.now(),
+      };
+  
+      localStorage.setItem("user", JSON.stringify(userData));
+  
+      // Auto logout after 24 hours
+      setTimeout(() => {
+        localStorage.removeItem("user");
+        toast("Session expired. Please log in again.");
+        navigate("/login");
+      }, 24 * 60 * 60 * 1000); // 24 hours
+  
+      setForm({
+        username: "",
+        password: "",
+        remember: false,
+      });
+  
+      navigate("/dashboard");
+    } else {
+      toast.error(result.message);
+    }
   };
+  
 
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },

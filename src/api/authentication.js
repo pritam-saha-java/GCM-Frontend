@@ -28,3 +28,29 @@ export const registerUser = async (formData) => {
     return { success: false, message: error.message };
   }
 };
+
+export const loginUser = async (formData) => {
+    try {
+      const response = await fetch(`${API_URL}/api/auth/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+  
+      const data = await response.json().catch(() => ({}));
+  
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed.");
+      }
+  
+      return { success: true, message: "Login successful!", token: data.token, user: data };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  };
+  
