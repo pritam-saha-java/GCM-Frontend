@@ -1,8 +1,20 @@
 import { useState } from "react";
 import {
-  Menu, X, LayoutDashboard, Wallet, ArrowDown, Package, Repeat,
-  Users, MessageSquare, Settings, LogOut, ChevronDown, ChevronUp
+  Menu,
+  X,
+  LayoutDashboard,
+  Wallet,
+  ArrowDown,
+  Package,
+  Repeat,
+  Users,
+  MessageSquare,
+  Settings,
+  LogOut,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -19,13 +31,24 @@ import MiningPackages from "./pages/packages/MiningPackages";
 import MyPackages from "./pages/packages/MyPackages";
 
 const navItems = [
-  { name: "Dashboard", icon: <LayoutDashboard size={18} />, component: <Dashboard /> },
+  {
+    name: "Dashboard",
+    icon: <LayoutDashboard size={18} />,
+    component: <Dashboard />,
+  },
   { name: "Deposit", icon: <Wallet size={18} />, component: <Deposit /> },
   { name: "Withdraw", icon: <ArrowDown size={18} />, component: <Withdraw /> },
-  // Packages moved to its own section with submenu
-  { name: "Transactions", icon: <Repeat size={18} />, component: <Transaction /> },
+  {
+    name: "Transactions",
+    icon: <Repeat size={18} />,
+    component: <Transaction />,
+  },
   { name: "Affiliate", icon: <Users size={18} />, component: <Affiliate /> },
-  { name: "Message", icon: <MessageSquare size={18} />, component: <Message /> },
+  {
+    name: "Message",
+    icon: <MessageSquare size={18} />,
+    component: <Message />,
+  },
 ];
 
 export default function Sidebar() {
@@ -54,7 +77,14 @@ export default function Sidebar() {
       localStorage.clear();
       navigate("/");
     }
-  }, []);  
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    toast.success("Logged out successfully!");
+    navigate("/");
+  };
+  
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-[#0f0f1c] to-[#111122] text-white">
@@ -74,7 +104,9 @@ export default function Sidebar() {
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full w-72 bg-[#111122]/70 backdrop-blur-xl border-r border-[#1f1f3a] shadow-lg z-50 transform transition-transform duration-300 ease-in-out
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0`}
+        ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:relative md:translate-x-0`}
       >
         <Link
           to="/"
@@ -104,12 +136,22 @@ export default function Sidebar() {
           <div className="space-y-1">
             <button
               className={`flex items-center gap-3 w-full p-[19px] rounded-lg transition-all duration-200 font-medium text-sm
-              ${isPackagesOpen ? "bg-gradient-to-r from-cyan-500 to-blue-700 shadow-md" : "hover:bg-[#1e1e36] text-gray-300 hover:text-white"}`}
+              ${
+                isPackagesOpen
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-700 shadow-md"
+                  : "hover:bg-[#1e1e36] text-gray-300 hover:text-white"
+              }`}
               onClick={() => setIsPackagesOpen(!isPackagesOpen)}
             >
-              <span className="text-cyan-400"><Package size={18} /></span>
+              <span className="text-cyan-400">
+                <Package size={18} />
+              </span>
               Packages
-              {isPackagesOpen ? <ChevronUp className="ml-auto" size={18} /> : <ChevronDown className="ml-auto" size={18} />}
+              {isPackagesOpen ? (
+                <ChevronUp className="ml-auto" size={18} />
+              ) : (
+                <ChevronDown className="ml-auto" size={18} />
+              )}
             </button>
 
             {isPackagesOpen && (
@@ -134,12 +176,22 @@ export default function Sidebar() {
           <div className="space-y-1">
             <button
               className={`flex items-center gap-3 w-full p-[19px] rounded-lg transition-all duration-200 font-medium text-sm
-              ${isSettingsOpen ? "bg-gradient-to-r from-cyan-500 to-blue-700 shadow-md" : "hover:bg-[#1e1e36] text-gray-300 hover:text-white"}`}
+              ${
+                isSettingsOpen
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-700 shadow-md"
+                  : "hover:bg-[#1e1e36] text-gray-300 hover:text-white"
+              }`}
               onClick={() => setIsSettingsOpen(!isSettingsOpen)}
             >
-              <span className="text-cyan-400"><Settings size={18} /></span>
+              <span className="text-cyan-400">
+                <Settings size={18} />
+              </span>
               Settings
-              {isSettingsOpen ? <ChevronUp className="ml-auto" size={18} /> : <ChevronDown className="ml-auto" size={18} />}
+              {isSettingsOpen ? (
+                <ChevronUp className="ml-auto" size={18} />
+              ) : (
+                <ChevronDown className="ml-auto" size={18} />
+              )}
             </button>
 
             {isSettingsOpen && (
@@ -171,29 +223,33 @@ export default function Sidebar() {
             className="flex items-center gap-3 p-[19px] rounded-lg text-gray-300 hover:text-white hover:bg-[#1e1e36] transition-all text-sm"
             onClick={() => setShowLogoutConfirm(true)}
           >
-            <span className="text-cyan-400"><LogOut size={18} /></span>
+            <span className="text-cyan-400">
+              <LogOut size={18} />
+            </span>
             Logout
           </button>
         </nav>
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
-        {activeComponent}
-      </main>
+      <main className="flex-1 p-6">{activeComponent}</main>
 
       {/* Logout Confirmation Modal */}
       {showLogoutConfirm && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40 backdrop-blur-sm">
           <div className="bg-[#1c1c2e] p-6 rounded-xl text-center shadow-2xl border border-[#2c2c40] w-[90%] max-w-sm">
-            <h2 className="text-xl font-semibold text-white mb-2">Confirm Logout</h2>
-            <p className="text-gray-400 mb-4">Are you sure you want to logout?</p>
+            <h2 className="text-xl font-semibold text-white mb-2">
+              Confirm Logout
+            </h2>
+            <p className="text-gray-400 mb-4">
+              Are you sure you want to logout?
+            </p>
             <div className="flex justify-center gap-4">
               <button
                 className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition"
                 onClick={() => {
+                  handleLogout();
                   setShowLogoutConfirm(false);
-                  setActiveComponent(<div>👋 Logged Out</div>);
                 }}
               >
                 Yes, Logout
