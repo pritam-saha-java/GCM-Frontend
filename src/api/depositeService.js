@@ -58,4 +58,24 @@ export const submitDeposit = async (formData) => {
     const data = await response.json();
     return data;
   };
+
+  export const bindUserAccountToCurrency = async (formData) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    formData.append("userName", user.username);
+  
+    const response = await fetch(`${API_URL}/api/deposit/bind-user-account-to-currency`, {
+      method: "POST",
+      headers: {
+        Authorization: `${user.tokenType} ${user.accessToken}`,
+      },
+      body: formData,
+    });
+  
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText || "Failed to fetch");
+    }
+  
+    return await response.json();
+  };
   
