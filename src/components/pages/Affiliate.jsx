@@ -1,35 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy } from "lucide-react";
 import { toast } from "react-hot-toast";
+import { getUserAffiliateData } from "../../api/affiliateService";
 
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text);
   toast.success("Copied to clipboard!");
 };
 
-const mockPartners = ["john_doe", "crypto_master", "eth_legend"];
-const levelData = [
-  {
-    date: "2025-04-15",
-    from: "john_doe",
-    level: "1",
-    amount: "$50",
-    type: "Referral Bonus",
-  },
-  {
-    date: "2025-04-16",
-    from: "crypto_master",
-    level: "2",
-    amount: "$30",
-    type: "Commission",
-  },
-];
-
 export default function Affiliate() {
-  const email = "user@example.com";
-  const username = "sfegeg";
-  const code = "3356697";
-  const link = `https://bchmimer.info//#/register/${code}`;
+  const [referralCode, setReferralCode] = useState("");
+  const [partnerList, setPartnerList] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const link = `https://gocloudmining.com/register?ref=${referralCode}`;
+
+  useEffect(() => {
+    const fetchAffiliateData = async () => {
+      try {
+        const response = await getUserAffiliateData();
+        setReferralCode(response.referralCode);
+        setPartnerList(response.partnerList || []);
+      } catch (error) {
+        toast.error("Failed to fetch affiliate data");
+        console.error(error);
+      }
+    };
+
+    fetchAffiliateData();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -37,16 +35,16 @@ export default function Affiliate() {
         {/* Affiliate Info */}
         <div className="bg-[#1a1a2f]/70 backdrop-blur-md border border-cyan-500/20 p-6 rounded-2xl shadow-lg space-y-4">
           <h3 className="text-xl font-bold text-white mb-2">Affiliate Program</h3>
-          
+
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
               <span className="text-gray-400">Your Email:</span>
-              <span className="text-white">{email}</span>
+              <span className="text-white">{user.email}</span>
             </div>
 
             <div className="flex items-center gap-2">
               <span className="text-gray-400">Your Username:</span>
-              <span className="text-white">{username}</span>
+              <span className="text-white">{user.username}</span>
               <button onClick={() => copyToClipboard(username)}>
                 <Copy size={16} className="text-cyan-400 hover:text-cyan-300" />
               </button>
@@ -54,8 +52,8 @@ export default function Affiliate() {
 
             <div className="flex items-center gap-2">
               <span className="text-gray-400">Your Referral Code:</span>
-              <span className="text-white">{code}</span>
-              <button onClick={() => copyToClipboard(code)}>
+              <span className="text-white">{referralCode}</span>
+              <button onClick={() => copyToClipboard(referralCode)}>
                 <Copy size={16} className="text-cyan-400 hover:text-cyan-300" />
               </button>
             </div>
@@ -73,9 +71,7 @@ export default function Affiliate() {
 
           <p className="mt-4 text-gray-300 text-sm">
             <span className="font-semibold text-cyan-400">Earn Bonus Shares</span><br />
-            As an affiliate partner of our website, you have the opportunity to earn money by sharing your referral link with friends and family. Even if you do not invest, you can still start earning up to 3% of each purchase made by the users you refer.
-            <br /><br />
-            Simply copy and share your unique referral link with your friends, and watch your referral rewards grow.
+            As an affiliate partner of our website, you have the opportunity to earn money by sharing your referral link with friends and family...
           </p>
 
           <button className="mt-4 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-md text-sm text-white hover:opacity-90 transition">
@@ -86,9 +82,9 @@ export default function Affiliate() {
         {/* Partners List */}
         <div className="bg-[#1a1a2f]/70 backdrop-blur-md border border-cyan-500/20 p-6 rounded-2xl shadow-lg">
           <h3 className="text-xl font-bold text-white mb-2">Partners List</h3>
-          <p className="text-sm text-gray-400 mb-4">Total Partners: <span className="text-cyan-400 font-semibold">{mockPartners.length}</span></p>
+          <p className="text-sm text-gray-400 mb-4">Total Partners: <span className="text-cyan-400 font-semibold">{partnerList.length}</span></p>
           <ul className="space-y-2">
-            {mockPartners.map((user, index) => (
+            {partnerList.map((user, index) => (
               <li key={index} className="text-white bg-[#22223a]/50 rounded-md px-3 py-2 text-sm shadow-sm">
                 {user}
               </li>
@@ -112,15 +108,7 @@ export default function Affiliate() {
               </tr>
             </thead>
             <tbody>
-              {levelData.map((item, i) => (
-                <tr key={i} className="border-b border-gray-800 hover:bg-[#1e1e36]/40 transition">
-                  <td className="px-4 py-2">{item.date}</td>
-                  <td className="px-4 py-2 text-cyan-400">{item.from}</td>
-                  <td className="px-4 py-2">{item.level}</td>
-                  <td className="px-4 py-2 text-green-400">{item.amount}</td>
-                  <td className="px-4 py-2 text-white">{item.type}</td>
-                </tr>
-              ))}
+              {/* Add rows when data is available */}
             </tbody>
           </table>
         </div>
