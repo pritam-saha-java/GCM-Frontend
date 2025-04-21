@@ -35,7 +35,7 @@ export default function LoginPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-8 text-white">
+    <div className="min-h-screen flex items-center justify-center px-4 py-8 text-white">
       <div className="w-full max-w-3xl bg-[#1a1a2f]/70 backdrop-blur-md border border-cyan-500/20 rounded-2xl shadow-2xl p-8">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-cyan-500/20 p-3 rounded-full">
