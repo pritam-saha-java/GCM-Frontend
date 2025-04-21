@@ -1,41 +1,23 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Wallet, ChevronDown, Loader2, CheckCircle2 } from "lucide-react";
-
-const withdrawMethods = [
-  { label: "USDT (TRC20)", value: "USDT", rate: 1.0 },
-  { label: "Bitcoin (BTC)", value: "BTC", rate: 0.000012 },
-  { label: "Ethereum (ETH)", value: "ETH", rate: 0.00018 },
-];
-
-const mockHistory = [
-  {
-    txid: "TX123456",
-    address: "TDSb7k...hM9s",
-    amount: "500",
-    status: "Pending",
-    time: "2025-04-16 12:23 PM",
-  },
-  {
-    txid: "TX654321",
-    address: "3Fi8...wr2f",
-    amount: "300",
-    status: "Completed",
-    time: "2025-04-15 9:10 AM",
-  },
-];
+import { getUserBalance } from "../../api/userService";
+import { getWithdrawMethods, submitWithdraw, getUserHistoricalWithdraws} from "../../api/withdraw";
 
 export default function Withdraw() {
-  const [balance, setBalance] = useState(2000.0);
-  const [method, setMethod] = useState(withdrawMethods[0]);
+  const [balance, setBalance] = useState(0.0);
   const [amount, setAmount] = useState("");
   const [password, setPassword] = useState("");
   const [receivable, setReceivable] = useState("0");
   const [loading, setLoading] = useState(false);
+  const [methods, setMethods] = useState([]);
+  const [method, setMethod] = useState(null);
+  const [loadingMethods, setLoadingMethods] = useState(true);
+  const [withdrawHistory, setWithdrawHistory] = useState([]);
 
   const isValid = () => {
     const amt = parseFloat(amount);
-    return amt > 0 && amt <= balance && password.length > 3;
+    return amt > 99 && amt <= balance && password.length > 3;
   };
 
   useEffect(() => {
@@ -48,19 +30,87 @@ export default function Withdraw() {
     }
   }, [amount, method]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isValid()) {
-      toast.error("Enter a valid amount and password.");
+      if (parseFloat(amount) < 100) {
+        toast.error("Minimum withdrawal amount is $100.");
+      } else {
+        toast.error("Enter a valid amount and password.");
+      }
       return;
     }
-
+    
+  
     setLoading(true);
-    setTimeout(() => {
+  
+    const formData = new FormData();
+    formData.append("amountInUsd", amount);
+    formData.append("withdrawalMethod", method.id);
+    formData.append("paymentPassword", password);
+    formData.append("receivablesInCoins", receivable);
+  
+    try {
+      await submitWithdraw(formData);
       toast.success("Withdrawal submitted!");
       setAmount("");
       setPassword("");
+    } catch (err) {
+      toast.error(err.message || "Withdrawal failed.");
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
+  };
+  
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        const data = await getUserBalance();
+        setBalance(data.balance);
+      } catch (err) {
+        toast.error("Failed to fetch balance");
+      }
+    };
+
+    const fetchMethods = async () => {
+      try {
+        const data = await getWithdrawMethods();
+        setMethods(data);
+        if (data.length > 0) setMethod(data[0]);
+      } catch (err) {
+        toast.error("Unable to fetch withdraw methods");
+      } finally {
+        setLoadingMethods(false);
+      }
+    };
+
+    const fetchWithdrawHistory = async () => {
+      try {
+        const data = await getUserHistoricalWithdraws();
+        setWithdrawHistory(data);
+      } catch (err) {
+        toast.error("Failed to fetch");
+      }
+    };
+
+    fetchWithdrawHistory();
+    fetchMethods();
+    fetchBalance();
+  }, []);
+
+  useEffect(() => {
+    const amt = parseFloat(amount);
+    if (!isNaN(amt) && method) {
+      const receivableAmt = amt * method.conversionRate;
+      setReceivable(receivableAmt.toFixed(8));
+    } else {
+      setReceivable("0");
+    }
+  }, [amount, method]);
+
+  const maskAddress = (address) => {
+    if (address.length <= 6) return address;
+    return `${address.slice(0, 3)}***${address.slice(-3)}`;
   };
 
   return (
@@ -71,7 +121,9 @@ export default function Withdraw() {
       <div className="bg-[#1a1a2f]/70 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6 shadow-lg flex items-center justify-between">
         <div>
           <h4 className="text-gray-400 text-sm">Available Balance</h4>
-          <p className="text-2xl font-bold text-cyan-300">${balance.toFixed(2)}</p>
+          <p className="text-2xl font-bold text-cyan-300">
+            ${balance.toFixed(2)}
+          </p>
         </div>
         <Wallet className="text-cyan-400" size={32} />
       </div>
@@ -79,29 +131,40 @@ export default function Withdraw() {
       {/* Withdraw Form */}
       <div className="bg-[#1a1a2f]/70 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6 shadow-lg space-y-6">
         {/* Method */}
-        <div>
-          <label className="block text-sm text-gray-400 mb-1">Withdrawal Method</label>
-          <div className="relative">
-            <select
-              className="w-full bg-[#0f0f1c] border border-cyan-500/30 rounded-lg px-4 py-2 pr-10 text-white appearance-none focus:outline-none focus:ring-1 focus:ring-cyan-500"
-              value={method.value}
-              onChange={(e) =>
-                setMethod(withdrawMethods.find((coin) => coin.value === e.target.value))
-              }
-            >
-              {withdrawMethods.map((coin) => (
-                <option key={coin.value} value={coin.value}>
-                  {coin.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-3 text-cyan-400 pointer-events-none" size={18} />
+        {!loadingMethods && method && (
+          <div>
+            <label className="block text-sm text-gray-400 mb-1">
+              Withdrawal Method
+            </label>
+            <div className="relative">
+              <select
+                className="w-full bg-[#0f0f1c] border border-cyan-500/30 rounded-lg px-4 py-2 pr-10 text-white appearance-none focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                value={method.id}
+                onChange={(e) =>
+                  setMethod(
+                    methods.find((m) => m.id === parseInt(e.target.value))
+                  )
+                }
+              >
+                {methods.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.coinName} - {maskAddress(m.walletAddress)}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                className="absolute right-3 top-3 text-cyan-400 pointer-events-none"
+                size={18}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Amount */}
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Enter Amount (USD)</label>
+          <label className="block text-sm text-gray-400 mb-1">
+            Enter Amount (USD)
+          </label>
           <input
             type="number"
             className="w-full bg-[#0f0f1c] border border-cyan-500/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500"
@@ -113,7 +176,9 @@ export default function Withdraw() {
 
         {/* Payment Password */}
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Payment Password</label>
+          <label className="block text-sm text-gray-400 mb-1">
+            Payment Password
+          </label>
           <input
             type="password"
             className="w-full bg-[#0f0f1c] border border-cyan-500/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500"
@@ -131,11 +196,15 @@ export default function Withdraw() {
           </div>
           <div>
             <span className="block text-gray-500">Conversion Rate</span>
-            <span>1 USD ≈ {method.rate.toFixed(9)} {method.value}</span>
+            <span>
+              1 USD ≈ {method?.conversionRate.toFixed(9)} {method?.coinName}
+            </span>
           </div>
           <div>
             <span className="block text-gray-500">Receivable</span>
-            <span>{receivable} {method.value}</span>
+            <span>
+              {receivable} {method?.coinName}
+            </span>
           </div>
         </div>
 
@@ -163,7 +232,9 @@ export default function Withdraw() {
 
       {/* Withdraw History */}
       <div className="bg-[#1a1a2f]/70 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6 shadow-lg">
-        <h3 className="text-lg font-semibold text-white mb-4">Withdrawal History</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">
+          Withdrawal History
+        </h3>
         <div className="overflow-auto">
           <table className="min-w-full text-sm text-left text-gray-400">
             <thead>
@@ -176,15 +247,18 @@ export default function Withdraw() {
               </tr>
             </thead>
             <tbody>
-              {mockHistory.map((item, idx) => (
-                <tr key={idx} className="border-b border-gray-800 hover:bg-[#1e1e36]/40 transition">
-                  <td className="px-4 py-2">{item.txid}</td>
-                  <td className="px-4 py-2">{item.address}</td>
+              {withdrawHistory.map((item, idx) => (
+                <tr
+                  key={idx}
+                  className="border-b border-gray-800 hover:bg-[#1e1e36]/40 transition"
+                >
+                  <td className="px-4 py-2">{item.txId}</td>
+                  <td className="px-4 py-2">{item.walletAddress}</td>
                   <td className="px-4 py-2">${item.amount}</td>
                   <td className="px-4 py-2">
                     <span
                       className={`px-2 py-1 rounded-full text-xs ${
-                        item.status === "Completed"
+                        item.status === "Approved"
                           ? "bg-green-600/20 text-green-400"
                           : "bg-yellow-600/20 text-yellow-400"
                       }`}
