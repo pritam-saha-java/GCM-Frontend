@@ -95,24 +95,24 @@ export default function Sidebar() {
 
       {/* Overlay */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40 md:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+    <div
+      className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40 md:hidden"
+      onClick={() => setIsOpen(false)}
+    />
+  )}
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-72 bg-[#111122]/70 backdrop-blur-xl border-r border-[#1f1f3a] shadow-lg z-50 transform transition-transform duration-300 ease-in-out
-        ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0`}
-      >
+    className={`fixed top-0 left-0 h-screen w-72 bg-[#111122]/70 backdrop-blur-xl border-r border-[#1f1f3a] shadow-lg z-50
+    overflow-y-auto scrollbar-thin scrollbar-thumb-[#2c2c40] scrollbar-track-transparent
+    transition-transform duration-300 ease-in-out
+    ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+  >
         <Link
           to="/"
           className="block p-6 text-2xl font-bold tracking-wide text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text transition hover:opacity-80"
         >
-          GoCloudMining 🚀
+          GoCloudMining
         </Link>
 
         <nav className="flex flex-col px-4 space-y-3 mt-2">
@@ -232,7 +232,8 @@ export default function Sidebar() {
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 p-6">{activeComponent}</main>
+      <main className="flex-1 p-6 md:ml-72">{activeComponent}</main>
+
 
       {/* Logout Confirmation Modal */}
       {showLogoutConfirm && (
