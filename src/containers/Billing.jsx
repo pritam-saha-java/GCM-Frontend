@@ -13,16 +13,16 @@ const Billing = () => (
     </div>
 
     <div className={layout.sectionInfo}>
-      <h2 className={styles.heading2}>
-      Benefits of becoming a <br className="sm:block hidden" /> CoCloudMiners Alliance Partner
+      <h2 className="font-poppins font-semibold ss:text-[48px] text-[32px] ss:leading-[76.8px] leading-[50px] bg-gradient-to-r from-yellow-400 via-yellow-300 to-gray-300 bg-clip-text text-transparent">
+        Benefits of becoming a <br className="sm:block hidden" /> GoCloudMiners Alliance Partner
       </h2>
       <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-      Become a partner of the GoCloudMining Alliance, share the invitation link with friends, 
-      and earn commission rewards permanently. While operating your own cloud mining contract, 
-      you can also get three levels of commission rewards from the platform! The first level rewards 3% 
-      commission, the second level rewards 1.5% commission, and the third level rewards 0.5% commission! 
-      Start making money at zero cost, and through the referral reward system, you can easily earn more than 
-      10,000 US dollars a month.
+        Become a partner of the GoCloudMining Alliance, share the invitation link with friends,
+        and earn commission rewards permanently. While operating your own cloud mining contract,
+        you can also get three levels of commission rewards from the platform! The first level rewards 3%
+        commission, the second level rewards 1.5% commission, and the third level rewards 0.5% commission!
+        Start making money at zero cost, and through the referral reward system, you can easily earn more than
+        10,000 US dollars a month.
       </p>
 
       <div className="flex flex-row flex-wrap sm:mt-10 mt-6">
