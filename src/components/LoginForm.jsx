@@ -176,9 +176,6 @@ export default function LoginForm() {
                 />
                 Remember Me
               </label>
-              <a href="/forgot-password" className="text-cyan-400 hover:underline">
-                Forgot Password?
-              </a>
             </motion.div>
 
             {/* Submit Button */}

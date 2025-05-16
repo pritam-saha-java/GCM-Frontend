@@ -10,42 +10,6 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    setIsLoggedIn(!!user);
-  }, [location.pathname]);
-
-  const handleNavClick = (id) => {
-    if (id === "Dashboard") return navigate("/dashboard");
-    if (id === "Login") return navigate("/login");
-    if (id === "Register") return navigate("/register");
-
-    if (location.pathname === "/") {
-      const section = document.getElementById(id.toLowerCase());
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      navigate(`/#${id.toLowerCase()}`);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    toast.success("Logged out successfully!");
-    setIsLoggedIn(false);
-    navigate("/");
-  };
-
-  const navLinks = [
-    { id: "home", title: "Home" },
-    { id: "features", title: "Features" },
-    { id: "clients", title: "Clients" },
-    isLoggedIn
-      ? { id: "Dashboard", title: "Dashboard" }
-      : { id: "Login", title: "Login" },
-    { id: "Register", title: "Register" },
-  ];
-  useEffect(() => {
     const stored = localStorage.getItem("user");
     if (stored) {
       const parsed = JSON.parse(stored);
@@ -60,7 +24,44 @@ const Navbar = () => {
       setIsLoggedIn(false);
     }
   }, [location.pathname]);
-  
+
+  const handleNavClick = (id) => {
+  const staticRoutes = ["dashboard", "login", "register", "setmeal", "about", "faq", "affiliate"];
+  const lowerId = id.toLowerCase();
+
+  if (staticRoutes.includes(lowerId)) {
+    return navigate(`/${lowerId}`);
+  }
+
+  if (location.pathname === "/") {
+    const section = document.getElementById(lowerId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  } else {
+    navigate(`/#${lowerId}`);
+  }
+};
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    toast.success("Logged out successfully!");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
+  const navLinks = [
+    { id: "home", title: "Home" },
+    { id: "setmeal", title: "Set Meal" },
+    { id: "about", title: "About" },
+    { id: "faq", title: "FAQ" },
+    { id: "affiliate", title: "Affiliate" },
+    isLoggedIn
+      ? { id: "Dashboard", title: "Dashboard" }
+      : { id: "Login", title: "Login" },
+    { id: "Register", title: "Register" },
+  ];
 
   return (
     <nav className="w-full flex py-6 justify-between items-center navbar">
@@ -126,6 +127,7 @@ const Navbar = () => {
                   handleLogout();
                   setToggle(false);
                 }}
+                className="font-poppins font-normal cursor-pointer text-[16px] text-red-400 hover:text-red-300 transition"
               >
                 Logout
               </li>

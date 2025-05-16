@@ -53,7 +53,7 @@ export const feedback = [
     content:
       "I've tried various mining websites,but this one is exceptional.Strong mining power,minimal downtime,transparent operations,and fair fees have significantly boosted my crypto holdings.",
     name: "Herman Jensen",
-    title: "Founder & Leader",
+    title: "Cloud Miner",
     img: people01,
   },
   {
@@ -61,7 +61,7 @@ export const feedback = [
     content:
       "This mining website has a visually appealing interface with clear and understandable images and charts.My mining experience here has been smooth,allowing me to focus on my photography work while earning some additional income.",
     name: "Steve Mark",
-    title: "Founder & Leader",
+    title: "Customer",
     img: people02,
   },
   {
@@ -69,7 +69,7 @@ export const feedback = [
     content:
       "If you need a dependable mining website,this one surpasses expectations.I've used it for months,and its consistent payouts and stable mining rigs make it a top choice for crypto mining.",
     name: "Kenn Gallagher",
-    title: "Founder & Leader",
+    title: "Cloud Miner",
     img: people03,
   },
 ];
@@ -94,69 +94,54 @@ export const stats = [
 
 export const footerLinks = [
   {
-    title: "Useful Links",
+    title: "Site Links",
     links: [
       {
-        name: "Content",
-        link: "https://gocloudmining.com/content/",
+        name: "Set Meal",
+        link: "/setmeal", 
       },
       {
-        name: "How it Works",
-        link: "https://gocloudmining.com/how-it-works/",
+        name: "About",
+        link: "/about", 
       },
       {
-        name: "Create",
-        link: "https://gocloudmining.com/create/",
+        name: "FAQ",
+        link: "/faq", 
       },
       {
-        name: "Explore",
-        link: "https://gocloudmining.com/explore/",
-      },
-      {
-        name: "Terms & Services",
-        link: "https://gocloudmining.com/terms-and-services/",
-      },
+        name: "Affiliate",
+        link: "/affiliate", 
+      }
     ],
   },
   {
-    title: "Community",
+    title: "Important Links",
     links: [
       {
-        name: "Help Center",
-        link: "https://gocloudmining.com/help-center/",
+        name: "Privacy and Policy",
+        link: "/privacy-policy", 
       },
       {
-        name: "Partners",
-        link: "https://gocloudmining.com/partners/",
+        name: "Terms of Services",
+        link: "/terms-of-service", 
       },
       {
-        name: "Suggestions",
-        link: "https://gocloudmining.com/suggestions/",
-      },
-      {
-        name: "Blog",
-        link: "https://gocloudmining.com/blog/",
-      },
-      {
-        name: "Newsletters",
-        link: "https://gocloudmining.com/newsletters/",
-      },
+        name: "What is cryptocurrency",
+        link: "/what-is-cryptocurrency", 
+      }
     ],
   },
   {
-    title: "Partner",
+    title: "Contact",
     links: [
       {
-        name: "Our Partner",
-        link: "https://gocloudmining.com/our-partner/",
-      },
-      {
-        name: "Become a Partner",
-        link: "https://gocloudmining.com/become-a-partner/",
-      },
+        name: "support@gocloudmining.com",
+        link: "mailto:support@gocloudmining.com",
+      }
     ],
   },
 ];
+
 
 export const socialMedia = [
   {

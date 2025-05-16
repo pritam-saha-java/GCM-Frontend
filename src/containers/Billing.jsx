@@ -24,11 +24,6 @@ const Billing = () => (
         Start making money at zero cost, and through the referral reward system, you can easily earn more than
         10,000 US dollars a month.
       </p>
-
-      <div className="flex flex-row flex-wrap sm:mt-10 mt-6">
-        <img src={apple} alt="app_store" className="w-[128px] h-[42px] object-contain mr-5 cursor-pointer" />
-        <img src={google} alt="google_play" className="w-[144px] h-[43px] object-contain cursor-pointer" />
-      </div>
     </div>
   </section>
 );

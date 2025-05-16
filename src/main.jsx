@@ -7,6 +7,8 @@ import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Login from './components/LoginForm';
 import './index.css';
+import SetMeal from './components/SetMeal';
+import About from './components/About';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,6 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/setmeal" element={<SetMeal />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

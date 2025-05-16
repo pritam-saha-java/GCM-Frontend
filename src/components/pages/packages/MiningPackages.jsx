@@ -225,7 +225,6 @@ const CheckoutModal = ({ isOpen, onClose, packagePrice, packageId }) => {
             className="w-full bg-cyan-500 text-white font-bold py-3 rounded mt-4"
             onClick={handleSubmit}
           >
-            Pay ${amount.toFixed(2)}
             {isLoading ? "Processing..." : `Pay $${amount.toFixed(2)}`}
           </button>
         </div>
