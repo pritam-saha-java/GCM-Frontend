@@ -9,6 +9,8 @@ import Login from './components/LoginForm';
 import './index.css';
 import SetMeal from './components/SetMeal';
 import About from './components/About';
+import FAQ from './components/FAQ';
+import Affiliate from './components/Affiliate';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -23,6 +25,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path="/setmeal" element={<SetMeal />} />
         <Route path="/about" element={<About />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/affiliate" element={<Affiliate />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

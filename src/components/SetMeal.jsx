@@ -41,7 +41,7 @@ const SetMeal = () => {
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
           <Navbar />
-          <h1 className="text-4xl font-extrabold text-center text-white mb-12">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">
           Hash Power Marketplace
         </h1>
 
@@ -99,7 +99,7 @@ const SetMeal = () => {
                   <div className="flex gap-2">
                     {[1, 2, 3].map((level) => (
                       <div key={level} className="text-center">
-                        <div className="w-8 h-8 rounded-full border-2 border-cyan-500 flex items-center justify-center text-xs font-bold text-cyan-400">
+                        <div className="w-8 h-8 rounded-full border-2 bg-gradient-to-r from-yellow-400 to-orange-500 border-cyan-500 flex items-center justify-center text-xs font-bold text-white">
                           {pkg[`level${level}Bonus`]}%
                         </div>
                         <p className="text-xs text-gray-400 mt-1">
@@ -113,7 +113,7 @@ const SetMeal = () => {
                 {/* Progress */}
                 <div className="relative h-2 bg-gray-800 rounded-full mt-4">
                   <div
-                    className="absolute left-0 top-0 h-full bg-cyan-500 rounded-full"
+                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
                     style={{ width: `${Math.floor(Math.random() * 40) + 60}%` }}
                   ></div>
                 </div>
@@ -122,7 +122,7 @@ const SetMeal = () => {
                 <div className="text-right mt-4">
                   <button
                     onClick={() => handleStart(pkg.id)}
-                    className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-5 rounded-full transition duration-200"
+                    className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:bg-cyan-600 text-white font-bold py-2 px-5 rounded-full transition duration-200"
                   >
                     Start Now
                   </button>
