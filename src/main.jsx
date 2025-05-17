@@ -11,6 +11,9 @@ import SetMeal from './components/SetMeal';
 import About from './components/About';
 import FAQ from './components/FAQ';
 import Affiliate from './components/Affiliate';
+import PrivecyPolicy from './components/PrivecyPolicy';
+import TermsOfService from './components/TermsOfService';
+import WhatIsCryptocurrency from './components/WhatIsCryptocurrency';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -27,6 +30,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/about" element={<About />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/affiliate" element={<Affiliate />} />
+        <Route path="/privacy-policy" element={<PrivecyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/what-is-cryptocurrency" element={<WhatIsCryptocurrency />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
