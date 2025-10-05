@@ -10,15 +10,15 @@ export const navLinks = [
     title: "Features",
   },
   {
-    id: "clients",
-    title: "Clients",
+    id: "testimonials",
+    title: "Testimonials",
   },
   {
-    id: "Register",
+    id: "register",
     title: "Register",
   },
   {
-    id: "Dashboard",
+    id: "dashboard",
     title: "Dashboard",
   },
 ];
@@ -27,49 +27,43 @@ export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Register now",
-    content:
-      "Registration takes just a few minutes.",
+    title: "Join Today",
+    content: "Become a member in just a few minutes and start your sports journey.",
   },
   {
     id: "feature-2",
     icon: shield,
-    title: "Get trial mining",
-    content:
-      "Find out how cloud mining works without any investment.",
+    title: "Free Trial Session",
+    content: "Experience our world-class facilities with a complimentary training session.",
   },
   {
     id: "feature-3",
     icon: send,
-    title: "Create and purchase your contract.",
-    content:
-      "Start mining BTC today!",
+    title: "Choose Your Sport",
+    content: "Select from multiple sports disciplines and start training immediately!",
   },
 ];
 
 export const feedback = [
   {
     id: "feedback-1",
-    content:
-      "I've tried various mining websites,but this one is exceptional.Strong mining power,minimal downtime,transparent operations,and fair fees have significantly boosted my crypto holdings.",
-    name: "Herman Jensen",
-    title: "Cloud Miner",
+    content: "Red Riders has transformed my fitness journey. The coaching staff is exceptional, facilities are top-notch, and the community support is incredible. I've achieved milestones I never thought possible!",
+    name: "Priya Sharma",
+    title: "Badminton Enthusiast",
     img: people01,
   },
   {
     id: "feedback-2",
-    content:
-      "This mining website has a visually appealing interface with clear and understandable images and charts.My mining experience here has been smooth,allowing me to focus on my photography work while earning some additional income.",
-    name: "Steve Mark",
-    title: "Customer",
+    content: "As a working professional, I struggled to find time for sports. Red Riders' flexible schedules and expert guidance helped me balance work and passion. The best decision I made for my health!",
+    name: "Rajesh Kumar",
+    title: "Pickel Ball Captain",
     img: people02,
   },
   {
     id: "feedback-3",
-    content:
-      "If you need a dependable mining website,this one surpasses expectations.I've used it for months,and its consistent payouts and stable mining rigs make it a top choice for crypto mining.",
-    name: "Kenn Gallagher",
-    title: "Cloud Miner",
+    content: "The community at Red Riders is like family. From beginners to pros, everyone supports each other. The state-of-the-art facilities and professional coaching have taken my game to the next level.",
+    name: "Amit Singh",
+    title: "Football Team Player",
     img: people03,
   },
 ];
@@ -77,93 +71,206 @@ export const feedback = [
 export const stats = [
   {
     id: "stats-1",
-    title: "User Active",
-    value: "3800+",
+    title: "Active Members",
+    value: "500+",
   },
   {
     id: "stats-2",
-    title: "Trusted by Company",
-    value: "230+",
+    title: "Sports Disciplines",
+    value: "12+",
   },
   {
     id: "stats-3",
-    title: "Transaction",
-    value: "$230M+",
+    title: "Coaching Staff",
+    value: "25+",
+  },
+  {
+    id: "stats-4",
+    title: "Years Established",
+    value: "5+",
   },
 ];
 
 export const footerLinks = [
   {
-    title: "Site Links",
+    title: "Quick Links",
     links: [
       {
-        name: "Set Meal",
-        link: "/setmeal", 
+        name: "Membership Plans",
+        link: "/membership", 
       },
       {
-        name: "About",
+        name: "Sports Facilities",
+        link: "/facilities", 
+      },
+      {
+        name: "Training Schedule",
+        link: "/schedule", 
+      },
+      {
+        name: "Coaching Staff",
+        link: "/coaches", 
+      }
+    ],
+  },
+  {
+    title: "Club Information",
+    links: [
+      {
+        name: "About Red Riders",
         link: "/about", 
+      },
+      {
+        name: "Gallery",
+        link: "/gallery", 
+      },
+      {
+        name: "Events & Tournaments",
+        link: "/events", 
+      },
+      {
+        name: "Achievements",
+        link: "/achievements", 
+      }
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      {
+        name: "Privacy Policy",
+        link: "/privacy-policy", 
+      },
+      {
+        name: "Terms of Service",
+        link: "/terms-of-service", 
       },
       {
         name: "FAQ",
         link: "/faq", 
       },
       {
-        name: "Affiliate",
-        link: "/affiliate", 
-      }
-    ],
-  },
-  {
-    title: "Important Links",
-    links: [
-      {
-        name: "Privacy and Policy",
-        link: "/privacy-policy", 
-      },
-      {
-        name: "Terms of Services",
-        link: "/terms-of-service", 
-      },
-      {
-        name: "What is cryptocurrency",
-        link: "/what-is-cryptocurrency", 
-      }
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      {
-        name: "support@gocloudmining.com",
-        link: "mailto:support@gocloudmining.com",
+        name: "Contact Us",
+        link: "/contact", 
       }
     ],
   },
 ];
 
-
 export const socialMedia = [
   {
     id: "social-media-1",
     icon: instagram,
-    link: "https://www.instagram.com/",
+    link: "https://www.instagram.com/RedRidersSportsClub",
+    name: "Instagram"
   },
   {
     id: "social-media-2",
     icon: facebook,
-    link: "https://www.facebook.com/",
+    link: "https://www.facebook.com/RedRidersSportsClub",
+    name: "Facebook"
   },
   {
     id: "social-media-3",
     icon: twitter,
-    link: "https://www.twitter.com/",
+    link: "https://www.twitter.com/RedRidersClub",
+    name: "Twitter"
   },
   {
     id: "social-media-4",
     icon: linkedin,
-    link: "https://www.linkedin.com/",
+    link: "https://www.linkedin.com/company/red-riders-sports-club",
+    name: "LinkedIn"
   },
+];
+
+export const sportsPartners = [
+  {
+    id: "partner-1",
+    logo: "🏏", // Cricket bat emoji as placeholder
+    name: "Kolkata Cricket Association",
+  },
+  {
+    id: "partner-2",
+    logo: "⚽", // Football emoji as placeholder
+    name: "West Bengal Football",
+  },
+  {
+    id: "partner-3",
+    logo: "🎾", // Tennis emoji as placeholder
+    name: "Eastern Tennis Federation",
+  },
+  {
+    id: "partner-4",
+    logo: "🏸", // Badminton emoji as placeholder
+    name: "State Badminton League",
+  },
+];
+
+export const sportsDisciplines = [
+  {
+    id: "sport-1",
+    name: "Cricket",
+    icon: "🏏",
+    description: "Professional coaching with net practice facilities"
+  },
+  {
+    id: "sport-2",
+    name: "Football",
+    icon: "⚽",
+    description: "Full-sized turf with professional training"
+  },
+  {
+    id: "sport-3",
+    name: "Badminton",
+    icon: "🏸",
+    description: "International standard courts"
+  },
+  {
+    id: "sport-4",
+    name: "Tennis",
+    icon: "🎾",
+    description: "Clay and hard courts available"
+  },
+  {
+    id: "sport-5",
+    name: "Basketball",
+    icon: "🏀",
+    description: "Indoor and outdoor courts"
+  },
+  {
+    id: "sport-6",
+    name: "Swimming",
+    icon: "🏊",
+    description: "Olympic-sized pool with coaches"
+  },
+];
+
+export const contactInfo = [
+  {
+    id: "contact-1",
+    type: "address",
+    value: "Red Riders Sports Club, [Insert Address], Kolkata, India",
+    icon: "📍"
+  },
+  {
+    id: "contact-2",
+    type: "phone",
+    value: "+91-9874723221",
+    icon: "📞"
+  },
+  {
+    id: "contact-3",
+    type: "email",
+    value: "redriderssportsclub2023@gmail.com",
+    icon: "✉️"
+  },
+  {
+    id: "contact-4",
+    type: "hours",
+    value: "Mon-Sun: 5:00 AM - 10:00 PM",
+    icon: "🕒"
+  }
 ];
 
 export const clients = [

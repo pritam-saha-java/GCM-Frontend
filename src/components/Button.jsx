@@ -17,7 +17,7 @@ const Button = ({ styles }) => {
     <button
       type="button"
       onClick={handleClick}
-      className={`py-4 px-6 bg-gradient-to-r from-yellow-400 to-orange-500 font-poppins font-medium text-[18px] text-primary outline-none ${styles} rounded-[10px]`}
+      className={`py-4 px-6 bg-gradient-to-r from-red-500 to-red-200 font-poppins font-medium text-[18px] text-white outline-none ${styles} rounded-[10px]`}
     >
       Get Started
     </button>

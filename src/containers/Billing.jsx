@@ -8,21 +8,23 @@ const Billing = () => (
 
       {/* gradient start */}
       <div className="absolute z-[3] -left-1/2 top-0 w-[50%] h-[50%] rounded-full white__gradient" />
-      <div className="absolute z-[0] w-[50%] h-[50%] -left-1/2 bottom-0 rounded-full pink__gradient" />
+      <div className="absolute z-[0] w-[50%] h-[50%] -left-1/2 bottom-0 rounded-full red__gradient" />
       {/* gradient end */}
     </div>
 
     <div className={layout.sectionInfo}>
-      <h2 className="font-poppins font-semibold ss:text-[48px] text-[32px] ss:leading-[76.8px] leading-[50px] bg-gradient-to-r from-yellow-400 via-yellow-300 to-gray-300 bg-clip-text text-transparent">
-        Benefits of becoming a <br className="sm:block hidden" /> GoCloudMiners Alliance Partner
+      <h2 className="font-poppins font-semibold ss:text-[48px] text-[32px] ss:leading-[76.8px] leading-[50px] bg-gradient-to-r from-red-500 via-red-300 to-gray-300 bg-clip-text text-transparent">
+        Benefits of becoming a <br className="sm:block hidden" /> Red Riders Club Member
       </h2>
       <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        Become a partner of the GoCloudMining Alliance, share the invitation link with friends,
-        and earn commission rewards permanently. While operating your own cloud mining contract,
-        you can also get three levels of commission rewards from the platform! The first level rewards 3%
-        commission, the second level rewards 1.5% commission, and the third level rewards 0.5% commission!
-        Start making money at zero cost, and through the referral reward system, you can easily earn more than
-        10,000 US dollars a month.
+        Join the Red Riders Sports Club family and unlock exclusive benefits designed to elevate your sports journey. 
+        Access state-of-the-art facilities, professional coaching, and a vibrant community of like-minded sports enthusiasts. 
+        Whether you're a beginner or a professional athlete, our club provides the perfect environment to grow, compete, and excel.
+      </p>
+      <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
+        Enjoy priority booking for facilities, exclusive member events, tournament participation rights, and special discounts 
+        on coaching programs. Connect with fellow athletes, build lasting friendships, and be part of Kolkata's premier sports 
+        community that champions excellence and sportsmanship.
       </p>
     </div>
   </section>

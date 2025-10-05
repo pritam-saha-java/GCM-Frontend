@@ -23,7 +23,7 @@ const GetStarted = () => {
         w-[140px]
         h-[140px]
         rounded-full
-        bg-blue-gradient
+        bg-red-gradient
         p-[2px]
         cursor-pointer
       `}

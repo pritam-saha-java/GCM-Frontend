@@ -14,6 +14,10 @@ import Affiliate from './components/Affiliate';
 import PrivecyPolicy from './components/PrivecyPolicy';
 import TermsOfService from './components/TermsOfService';
 import WhatIsCryptocurrency from './components/WhatIsCryptocurrency';
+import Management from './components/Management';
+import Members from './components/Members';
+import Events from './components/Events';
+import Contacts from './components/Contacts';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -33,6 +37,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/privacy-policy" element={<PrivecyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/what-is-cryptocurrency" element={<WhatIsCryptocurrency />} />
+        <Route path="/management" element={<Management />} />
+        <Route path="/members" element={<Members />} />
+        <Route path="/event" element={<Events />} />
+        <Route path="/contacts" element={<Contacts />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

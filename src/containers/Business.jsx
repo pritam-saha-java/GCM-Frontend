@@ -14,7 +14,7 @@ const FeatureCard = ({ icon, title, content, index }) => (
       <img src={icon} alt="icon" className="w-[50%] h-[50%] object-contain" />
     </div>
     <div className="flex-1 flex-col ml-3">
-      <h4 className="font-poppins font-semibold text-[18px] leading-[23px] mb-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-gray-300 bg-clip-text text-transparent">
+      <h4 className="font-poppins font-semibold text-[18px] leading-[23px] mb-1 bg-gradient-to-r from-red-500 via-red-300 to-gray-300 bg-clip-text text-transparent">
         {title}
       </h4>
       <p className="font-poppins font-normal text-dimWhite text-[16px] leading-[24px] mb-1">
@@ -28,16 +28,14 @@ const Business = () => {
   return (
     <section id="features" className={layout.section}>
       <div className={layout.sectionInfo}>
-        <h2 className="font-poppins font-semibold ss:text-[48px] text-[32px] ss:leading-[76.8px] leading-[50px] bg-gradient-to-r from-yellow-400 via-yellow-300 to-gray-300 bg-clip-text text-transparent">
-          How to Start Cloud Mining? <br className="sm:block hidden" />
+        <h2 className="font-poppins font-semibold ss:text-[48px] text-[32px] ss:leading-[76.8px] leading-[50px] bg-gradient-to-r from-red-500 via-red-300 to-gray-300 bg-clip-text text-transparent">
+          How to Join Our Club? <br className="sm:block hidden" />
         </h2>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-          Earn cryptocurrencies easily, follow these simple steps:
+          Become a champion with these simple steps:
         </p>
         <p className={`${styles.paragraph} max-w-[470px] mt-3`}>
-          Pick a trusted cloud mining platform, sign up, and choose a mining
-          plan that fits your budget. Make a payment and start earning crypto
-          daily—no hardware or maintenance needed!
+          Choose your favorite sport, complete the registration process, and start your training journey with our expert coaches. Access world-class facilities and join our vibrant sports community today!
         </p>
 
         <Button styles="mt-10" />
