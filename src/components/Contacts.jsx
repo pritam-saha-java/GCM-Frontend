@@ -96,7 +96,7 @@ const Contacts = () => {
     {
       name: "YouTube",
       icon: FaYoutube,
-      url: "https://youtube.com/RedRidersBoundaryBanter",
+      url: "https://www.youtube.com/@RedRidersBoundaryBanter",
       color: "from-red-600 to-red-800",
       handle: "Red Riders Boundary Banter"
     }

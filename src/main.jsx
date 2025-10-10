@@ -18,6 +18,10 @@ import Management from './components/Management';
 import Members from './components/Members';
 import Events from './components/Events';
 import Contacts from './components/Contacts';
+import LiveStream from './components/LiveStream';
+import LiveScores from './components/LiveScores';
+import OurClients from './components/OurClients';
+import Gallery from './components/Gallery';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -41,6 +45,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/members" element={<Members />} />
         <Route path="/event" element={<Events />} />
         <Route path="/contacts" element={<Contacts />} />
+        <Route path="/live-stream" element={<LiveStream />} />
+        <Route path="/live-scoring" element={<LiveScores />} />
+        <Route path="/our-clients" element={<OurClients />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

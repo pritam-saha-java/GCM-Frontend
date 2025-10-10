@@ -104,7 +104,7 @@ const Footer = () => (
               </a>
               
               <a 
-                href="https://youtube.com/RedRidersBoundaryBanter" 
+                href="https://www.youtube.com/@RedRidersBoundaryBanter" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 rounded-lg bg-gray-800/30 hover:bg-red-600/20 border border-gray-700/50 hover:border-red-500/30 transition-all duration-300 group"

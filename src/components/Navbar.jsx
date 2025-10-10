@@ -68,11 +68,11 @@ const Navbar = () => {
     { id: "contacts", title: "Contacts" },
   ];
 
-  if (selectedProject?.type === "club") {
-    navLinks.push({ id: "livescoring", title: "Live Scoring" });
-    navLinks.push({ id: "livestream", title: "Live Stream" });
-  } else if (selectedProject?.type === "management") {
-    navLinks.push({ id: "ourclient", title: "Our Client" });
+  if (selectedProject?.projectName === "Red Riders Sports Club") {
+    navLinks.push({ id: "live-stream", title: "Live Stream" });
+    navLinks.push({ id: "live-scoring", title: "Live Scoring" });
+  } else if (selectedProject?.projectName === "Red Riders Management") {
+    navLinks.push({ id: "our-clients", title: "Our Client" });
     navLinks.push({ id: "gallery", title: "Gallery" });
   } else if (selectedProject?.type === "complex") {
     navLinks.push({ id: "bookcourt", title: "Book Court" });
